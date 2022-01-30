@@ -16,7 +16,7 @@ It is recommeded to run this program with a GPU as rendering is very much faster
 2. The iterative formula `Z = Z^2 + c` is then applied every iteration.  To render the set the program measures how many iterations it takes for a given value of `c` to diverge (magnitude > 4) and that pixel is assigned a corresponding brightness where the upper limit of the brightness is set by the escape threshold. Next the gradient of its value w.r.t the last iteration is computed and that pixel is assigned a brightness corresponding to the magnitude of the gradient.
 
 #### Dependancies
-* Python 3 with pytorch and pygame installed. Make sure to install the GPU version of pytorch if you have a GPU.
+* Python 3 with pytorch, pygame, matplotlib and numpy installed. Make sure to install the GPU version of pytorch if you have a GPU.
 This program has been tested on both Windows 10 and Linux.
 
 The image filename will contain the coordinates of where you are in the Mandelbrot set etc to enable reproducible results.
