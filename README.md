@@ -15,9 +15,9 @@ The image filename will contain the coordinates of where you are in the Mandelbr
 The top bar of the program also shows coordinates of where you are as well as the resolution and escape brightness.
 
 ## How it works
-1. At the start the program creates a matrix `z` of all the coordinates in the image it wants to render. By using a matrix of complex numbers instead of iterating scalar values this allows the computation to be parallelized and thus enables GPU computation for maximum render speed.
-2. The iterative formula `Z = Z^2 + c` is then applied every iteration.  To render the set the program measures how many iterations it takes for a given value of `c` to diverge (magnitude > 4) and that pixel is assigned a corresponding brightness where the upper limit of the brightness is set by the escape threshold. Next the gradient of its value w.r.t the last iteration is computed and that pixel is assigned a brightness corresponding to the magnitude of the gradient.
-3. When the user pans the image or zooms in the program recalculates the matrix `z` (step 1) and the process repeats.
+1. At the start the program creates a matrix `C` of all the coordinates in the image it wants to render and a matrix of zeros `Z` with the same shape as `C`. By using a matrix of complex numbers instead of iterating scalar values this allows the computation to be parallelized and thus enables GPU computation for maximum render speed.
+2. The iterative formula `Z = Z^2 + C` is then applied every iteration.  To render the set the program measures how many iterations it takes for a given value of `Z` to diverge (magnitude > 4) and that pixel is assigned a corresponding brightness where the upper limit of the brightness is set by the escape threshold. Next the gradient of its value w.r.t the last iteration is computed and that pixel is assigned a brightness corresponding to the magnitude of the gradient.
+3. When the user pans the image or zooms in the program recalculates the matrix `C`, zeros `Z` and the process repeats.
 
 #### Dependancies
 * Python 3 with pytorch, pygame, matplotlib and numpy installed. Make sure to install the GPU version of pytorch if you have a GPU.
