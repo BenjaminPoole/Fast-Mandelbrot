@@ -84,12 +84,12 @@ class Julia():
         return f'x={self.x}, y={self.y}, x0={np.real(self.c):.2f}, y0={np.imag(self.c):.2f}, radius={self.radius}, res={self.size}, iter={self.iterations_count}, escape_brightness_threshold={self.escape_time_max}'
     
 def redrawGameWindow():
-    mbs.draw(win)
+    juls.draw(win)
     pygame.display.update()
 
 inital_click = True
 
-mbs = Julia()
+juls = Julia()
 run = True
 while run:
     for event in pygame.event.get():
@@ -98,60 +98,60 @@ while run:
             
         elif event.type == MOUSEWHEEL:
             if event.y > 0:
-                radius = mbs.radius/2 # make sure that we do not get a divide by zero error. NumPy data structures have limited precision
+                radius = juls.radius/2 # make sure that we do not get a divide by zero error. NumPy data structures have limited precision
                 if radius > 5e-17:
-                    mbs.radius /=2
+                    juls.radius /=2
             elif event.y < 0:
-               radius = mbs.radius*2
+               radius = juls.radius*2
                if radius < 1e+300:
-                    mbs.radius *= 2
-            mbs.calculate_matrix()
+                    juls.radius *= 2
+            juls.calculate_matrix()
             
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                mbs.size -= 100
-                if mbs.size < 100:
-                    mbs.size = 100
-                mbs.calculate_matrix()
+                juls.size -= 100
+                if juls.size < 100:
+                    juls.size = 100
+                juls.calculate_matrix()
             
             if event.key == pygame.K_c:
-                mbs.false_color = not(mbs.false_color) # toggle false color rendering
+                juls.false_color = not(juls.false_color) # toggle false color rendering
                 
             if event.key == pygame.K_RIGHT:
-                mbs.size +=100
-                # if mbs.size > 1000:
-                #     mbs.size = 1000
-                mbs.calculate_matrix()
+                juls.size +=100
+                # if juls.size > 1000:
+                #     juls.size = 1000
+                juls.calculate_matrix()
                 
             if event.key == pygame.K_DOWN:
-                mbs.escape_time_max -=20
-                mbs.calculate_matrix()
+                juls.escape_time_max -=20
+                juls.calculate_matrix()
                 
             if event.key == pygame.K_UP:
-                mbs.escape_time_max +=20
-                mbs.calculate_matrix()
+                juls.escape_time_max +=20
+                juls.calculate_matrix()
 
             if event.key == pygame.K_s:
                 pygame.display.set_caption('Saving image...')
-                mbs.get_render(save=True)
+                juls.get_render(save=True)
             
             # Move cursor around julia seed-space (for lack of a better name)
             # Since s is already used I went with Vim (lkjh) move-keys over adws
             if event.key == pygame.K_h:
-                mbs.c -= 0.02
-                mbs.calculate_matrix()
+                juls.c -= 0.02
+                juls.calculate_matrix()
 
             if event.key == pygame.K_l:
-                mbs.c += 0.02
-                mbs.calculate_matrix()
+                juls.c += 0.02
+                juls.calculate_matrix()
 
             if event.key == pygame.K_j:
-                mbs.c -= 0.02j
-                mbs.calculate_matrix()
+                juls.c -= 0.02j
+                juls.calculate_matrix()
 
             if event.key == pygame.K_k:
-                mbs.c += 0.02j
-                mbs.calculate_matrix()
+                juls.c += 0.02j
+                juls.calculate_matrix()
 
 
 
@@ -164,16 +164,16 @@ while run:
             x,y = 0,0
             inital_click = False
             
-        mbs.x-=mbs.radius*x/(WIN_SIZE/5) 
-        mbs.y-=mbs.radius*y/(WIN_SIZE/5)
-        mbs.calculate_matrix()
+        juls.x-=juls.radius*x/(WIN_SIZE/5) 
+        juls.y-=juls.radius*y/(WIN_SIZE/5)
+        juls.calculate_matrix()
         
     else: # if not clicking then the next click will be our first
         inital_click=True
 
     ## rendering fractal
     for i in range(20):
-        mbs.render_julia() # every loop keep iterating over the set
+        juls.render_julia() # every loop keep iterating over the set
         # improving the quality until we recalculate the matrix on user input.
 
     redrawGameWindow()
