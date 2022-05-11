@@ -10,6 +10,7 @@ It is recommeded to run this program with a GPU as rendering is very much faster
 4. Use `up`and `down` arrow keys to change escape threshold. When you zoom in you will probably need to increase this value because you are computing more iterations.
 5. Press `c` to toggle false color which by default is grayscale (saves will always be grayscale even with false color).
 6. Press `s` to save image of render on screen. This will save the image as a png to either your home directory or current working directory depending on your OS. 
+7. *Julia set only:* Use `k` `j` `l` `h` to move the Julia-set seed coordinate up, down, left, and right resp.
 
 The image filename will contain the coordinates of where you are in the Mandelbrot set etc to enable reproducible results.
 The top bar of the program also shows coordinates of where you are as well as the resolution and escape brightness.
