@@ -27,4 +27,6 @@ This program has been tested on both Windows 10 and Linux.
 #### Credits
 This program was based on [this notebook](https://github.com/mnd-af/src/blob/master/2020/07/14/Mandelbrot.ipynb) and the corresponding [Youtube video](https://youtu.be/GvVYKoX1g2s) which taught the author how to do this.
 
+Thanks to [Stephen Fay](https://github.com/dcxSt) for contributing Julia.py so you can render Julia sets. 
+
 If you wish to ask questions/report a bug or contribute then make sure to open an issue and let me know.
